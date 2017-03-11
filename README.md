@@ -19,3 +19,11 @@ Install npm packages for project.
 2. `react-native run-ios`  
 App will start in IOS emulator.
 3. If you want to run on real device. Open Xcode with `ios/MotherApp.xcodeproj/project.pbxproj` and build in Xcode.
+
+## Logic
+When fetching API, the user will be separate into two groups.  
+
+Normal: user which is not late more than 2 times in the same calendar month.  
+Late: user which has 3 or more late record in the same calendar month.
+
+This can be changed in the `filterUsers()` in `app/components/List/index.js`.
