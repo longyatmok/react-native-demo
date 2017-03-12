@@ -46,7 +46,7 @@ class UserList extends Component {
   componentDidMount() {
     this.reload()
   }
-  
+
   reload() {
     this.setState({ refresh: true });
     fetch("http://hiring.hkdev.motherapp.com/api/mausers/?format=json")
@@ -190,12 +190,15 @@ function filterUsers(userArr) {
   var lateList = [];
   // dummy
   _.forEach(userArr, function(user){
-    // Check is lates more than 2 in a same calendar month
+    // Check is lates more than 2 in a same calendar month within this year
     var boolObj = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     var inserted = false;
     _.forEach(user.lateDates, function(datetime){
-      var month = datetime.getMonth()
-      boolObj[month] = boolObj[month] + 1;
+      var year = datetime.getYear();
+      if(year == new Date().getYear()){
+        var month = datetime.getMonth();
+        boolObj[month] = boolObj[month] + 1;
+      }
     });
     for(var i in boolObj) {
       console.log(boolObj[i]);
